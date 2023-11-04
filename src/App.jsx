@@ -8,6 +8,7 @@ const decoder = new TextDecoder();
 
 function App() {
   const [light, setLight] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getPort = async () => {
     const port = await navigator.serial.requestPort();
@@ -17,12 +18,17 @@ function App() {
   };
 
   const sendString = async (string) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
     const dataArrayBuffer = encoder.encode(string);
-    setLight(!light);
     await window.writer.write(dataArrayBuffer);
     const readerData = await window.reader.read();
     const data = decoder.decode(readerData.value);
+    setLight(!light);
     console.log(data);
+    setLoading(false);
   };
 
   return (
