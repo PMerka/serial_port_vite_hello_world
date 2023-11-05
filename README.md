@@ -1,6 +1,15 @@
 # React + Vite + serial port + arduino
 
 Simple testing project - serial port sending and receiving data.
+Allows to turn on/off led diode connected to arduino from "fronted app".
+
+React app can send data to serial port. 
+[Web Serial API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API)
+
+App can send string "on" or "off" to serial port.
+
+Arduino than returns string back to the FE and turns on/off the led diode.
+
 
 ## arduino code:
 
